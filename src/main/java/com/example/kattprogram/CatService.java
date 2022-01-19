@@ -9,7 +9,6 @@ import com.example.kattprogram.repositories.HumanRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class CatService {
     public Cat createCat(String catName, String humanName) {
         Cat cat = catRepository.save(new Cat(catName));
         addHumanToCat(cat, humanName);
-        addFoodBowlToCat(cat, FoodType.FISH);
+        addFoodBowlToCat(cat, "Fish");
         return catRepository.save(cat);
     }
 
@@ -33,7 +32,7 @@ public class CatService {
         return human;
     }
 
-    private FoodBowl addFoodBowlToCat(Cat cat, FoodType foodType) {
+    private FoodBowl addFoodBowlToCat(Cat cat, String foodType) {
         FoodBowl foodBowl = new FoodBowl(foodType, cat);
         cat.setFoodBowl(foodBowl);
         return foodBowl;

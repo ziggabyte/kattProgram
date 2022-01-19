@@ -1,7 +1,5 @@
 package com.example.kattprogram.entities;
 
-import com.example.kattprogram.FoodType;
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -11,13 +9,12 @@ public class FoodBowl {
     private String id;
 
     @Column
-    @Enumerated(EnumType.STRING)
-    private FoodType foodType;
+    private String foodType;
 
     @OneToOne(mappedBy = "foodBowl", cascade = CascadeType.ALL)
     private Cat cat;
 
-    public FoodBowl(FoodType foodType, Cat cat) {
+    public FoodBowl(String foodType, Cat cat) {
         this.id = UUID.randomUUID().toString();
         this.foodType = foodType;
         this.cat = cat;
@@ -34,11 +31,11 @@ public class FoodBowl {
         this.id = id;
     }
 
-    public FoodType getFoodType() {
+    public String getFoodType() {
         return foodType;
     }
 
-    public void setFoodType(FoodType foodType) {
+    public void setFoodType(String foodType) {
         this.foodType = foodType;
     }
 
