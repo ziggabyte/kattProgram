@@ -6,6 +6,7 @@ import lombok.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,13 +23,13 @@ public class CatController {
                 .collect(Collectors.toList());
     }
 
-   @PostMapping
-   public CatDTO create(@RequestBody CreateCat createCat) {
+    @PostMapping
+    public CatDTO create(@RequestBody CreateCat createCat) {
         return toDTO(catService.createCat(
                 createCat.getCatName(),
                 createCat.getHumanName())
         );
-   }
+    }
 
     private CatDTO toDTO(Cat cat) {
         return new CatDTO(
@@ -39,14 +40,14 @@ public class CatController {
 
     @Value
     @AllArgsConstructor
-    private static class CreateCat {
+    static class CreateCat {
         String catName;
         String humanName;
     }
 
     @Value
     @AllArgsConstructor
-    private static class CatDTO{
+    static class CatDTO {
         String id;
         String name;
     }

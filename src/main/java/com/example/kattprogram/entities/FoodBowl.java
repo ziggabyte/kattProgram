@@ -14,7 +14,7 @@ public class FoodBowl {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
-    @OneToOne(mappedBy = "foodBowl", optional = false, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "foodBowl", cascade = CascadeType.ALL)
     private Cat cat;
 
     public FoodBowl(FoodType foodType, Cat cat) {
